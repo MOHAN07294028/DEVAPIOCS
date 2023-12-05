@@ -24,6 +24,7 @@ const registerModel = mongoose.Schema({
     Address:{type:String,rquired:true},
     PhoneNumber:{type:String,rquired:true, validate: { validator: validatePhoneNumber, message: "Invalid PhoneNumber" }},
     Gender:{type:String,rquired:true},
+    Role:{type:String,rquired:true},
     createdAt:{type:Date,default:Date.now}
 },{collection:'ocsRegister', versionKey: false})
 
