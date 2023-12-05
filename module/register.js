@@ -5,7 +5,7 @@ const {registerSchema} = require('../schema/register')
 const router = express.Router()
 mongoose.connect(dbURL)
 
-router.get('/',async(req,res)=>{
+router.get('/getRegisterDetails',async(req,res)=>{
     try {
         let data = await registerSchema.find()
         res.status(200).send({
@@ -20,7 +20,7 @@ router.get('/',async(req,res)=>{
     }
 })
 
-router.post('/',async(req,res)=>{
+router.post('/saveRegisterData',async(req,res)=>{
     try {
         let validate = await registerSchema.findOne({Email:req.body.Email})
         if(!validate){
@@ -32,12 +32,11 @@ router.post('/',async(req,res)=>{
         }
         else{
             res.status(400).send({
-                resultBoolean: true,
-                data: "Data already exist",
+                result: false,
+                result: "Data already exist",
               });
         }
     } catch (error) {
-        console.log(error.message)
         res.status(400).send({
             status:false,
             result:error?.message
