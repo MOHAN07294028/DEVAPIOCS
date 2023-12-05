@@ -8,6 +8,7 @@ mongoose.connect(dbURL)
 
 router.post('/loginData', async (req, res) => {
     try {
+        console.log(registerSchema)
       const employee = await registerSchema.findOne({ Username: req.body.EmployeeId });
       if (!employee) {
         return res.status(400).send({
